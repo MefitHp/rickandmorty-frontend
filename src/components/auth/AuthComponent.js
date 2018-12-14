@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Signup from './Signup';
+import Login from './Login';
+import toastr from 'toastr'
+import { loginUser, signupUser } from '../../services/Api';
 
 class AuthComponent extends Component {
     state = {
@@ -7,9 +10,29 @@ class AuthComponent extends Component {
     }
 
     handleSignup = (e) => {
+        const { user } = this.state
         e.preventDefault()
-        console.log('Signup');
+        signupUser(user)
+            .then(r => {
+                toastr.success('Registered')
+                this.props.history.push('/login')
+            }).catch(e => {
+                toastr.error(e)
+            })
+    }
 
+    handleLogin = (e) => {
+        e.preventDefault()
+        const { user } = this.state
+        loginUser(user)
+            .then(r => {
+                localStorage.setItem('loggedUser', JSON.stringify(r))
+                toastr.success('Login Success')
+                this.props.history.push('/profile')
+
+            }).catch(e => {
+                toastr.error(e)
+            })
     }
     handleInput = (e) => {
         const { user } = this.state
@@ -19,12 +42,11 @@ class AuthComponent extends Component {
 
     render() {
         const { pathname } = this.props.location
-        const { handleInput, handleSignup } = this
-        console.log(this.state.user)
+        const { handleInput, handleSignup, handleLogin } = this
         return (
-            <div>
+            <div className="d-flex" style={{ height: '100vh' }}>
                 {pathname === '/login' ?
-                    <p>Login</p> :
+                    <Login handleInput={handleInput} handleLogin={handleLogin} /> :
                     <Signup handleInput={handleInput} handleSignup={handleSignup} />
                 }
             </div>

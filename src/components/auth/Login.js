@@ -3,14 +3,13 @@ import { Form, Icon, Input, Button } from 'antd'
 
 const FormItem = Form.Item;
 
-
-const Signup = ({ handleInput, handleSignup }) => {
+const Login = ({ handleLogin, handleInput }) => {
     return (
         <Fragment>
             <div>
-                <h2 style={{ textAlign: 'center' }}>Formulario de registro</h2>
+                <h2 style={{ textAlign: 'center' }}>Formulario de inicio de sesión:</h2>
                 <div className="d-flex">
-                    <Form layout="inline" onSubmit={handleSignup}>
+                    <Form layout="inline" onSubmit={handleLogin}>
                         <FormItem
                         >
                             <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={handleInput} placeholder="Email" name="email" />
@@ -25,7 +24,7 @@ const Signup = ({ handleInput, handleSignup }) => {
                                 type="primary"
                                 htmlType="submit"
                             >
-                                Signup
+                                Login
                     </Button>
                         </FormItem>
                     </Form>
@@ -35,4 +34,4 @@ const Signup = ({ handleInput, handleSignup }) => {
     )
 }
 
-export default Signup
+export default Login

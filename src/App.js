@@ -11,16 +11,12 @@ const MenuItemGroup = Menu.ItemGroup;
 
 
 class App extends Component {
-  handleClick = (e) => {
-    console.log('click ', e);
-  }
   render() {
     return (
       <div>
         <Layout style={{ height: '100vh' }}>
           <Sider style={{ overflowY: 'scroll' }}>
             <Menu
-              onClick={this.handleClick}
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               style={{ height: '100vh' }}
@@ -32,6 +28,7 @@ class App extends Component {
                   <Menu.Item key="2"><Link to='/characters'>Characters</Link></Menu.Item>
                   <Menu.Item key="3"><Link to='/login'>Login</Link></Menu.Item>
                   <Menu.Item key="4"><Link to='/signup'>Signup</Link></Menu.Item>
+                  <Menu.Item key="5"><Link to='/profile'>Profile</Link></Menu.Item>
                 </MenuItemGroup>
               </SubMenu>
             </Menu>
